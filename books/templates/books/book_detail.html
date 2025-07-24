@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'books/style.css' %}">
+    <meta charset="UTF-8">
+    <title>{{ book.title }}</title>
+</head>
+<body>
+    <a id='link'  href="{% url 'book_list' %}">← Back to book list</a>
+
+    <h2>Reviews</h2>
+
+    <div class="review-page-container">
+        <!-- LEFT: Book info -->
+        <div class="book-info">
+            {% if book.cover_image %}
+                <img src="{{ book.cover_image.url }}" class="book-image">
+            {% else %}
+                <p>No cover.</p>
+            {% endif %}
+            <h3>{{ book.title }}</h3>
+            <p><strong>Author:</strong> {{ book.author }}</p>
+            <p><strong>Genre:</strong> {{ book.genre }}</p>
+            <p><strong>Published:</strong> {{ book.published_date }}</p>
+            <p><strong>Description:</strong> {{ book.description }}</p>
+        </div>
+
+        <!-- RIGHT: Reviews table -->
+        <div class="review-section">
+            <table class="review-table">
+                <thead>
+                    <tr>
+                        <th>Reviewer Name</th>
+                        <th>Review Date</th>
+                        <th>Rating</th>
+                        <th>Comment</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for review in reviews %}
+                    <tr>
+                        <td>{{ review.reviewer_name }}</td>
+                        <td>{{ review.review_date }}</td>
+                        <td>{{ review.rating }}/10</td>
+                        <td>{{ review.comment }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
+

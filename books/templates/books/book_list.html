@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'books/style.css' %}">
+    <meta charset="UTF-8">
+    <title>{{ book.title }}</title>
+</head>
+
+<body>
+    <h1>Books</h1>
+    <p>Click on the name of the book to see reviews about the book.</p>
+
+    <table>
+        <tr id="first_row">
+            <th>Book Title</th>
+            <th>Author</th>
+            <th>Genre</th>
+            <th>Published Date</th>
+            <th>Book Description</th>
+            <th>Book Cover</th>
+        </tr>
+        {% for book in books %}
+            <tr>
+                <td><a href="{% url 'book_detail' book.id %}">{{ book.title }}</a></td>
+                <td>{{ book.author }}</td>
+                <td>{{ book.genre }}</td>
+                <td>{{ book.published_date }}</td>
+                <td>{{ book.description }}</td>
+                <td>
+                    {% if book.cover_image %}
+                        <img src="{{ book.cover_image.url }}" width="200">
+                    {% else %}
+                        <p>No cover.</p>
+                    {% endif %}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
+
+
+
