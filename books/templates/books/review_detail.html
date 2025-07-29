@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'books/style.css' %}">
+    <meta charset="UTF-8">
+    <title>{{ review.reviewer_name }}</title>
+</head>
+<body>
+    <a href="{% url 'book_detail' review.book.id %}">← Back to book</a>
+
+    <p><b>Reviewer Name: </b>{{ review.reviewer_name }}</p>
+    <p><b>Review Date: </b>{{ review.review_date }}</p>
+    <p><b>Rating: </b>{{ review.rating }}</p>
+    <p><b>Comment: </b>{{ review.review_text}}</p>
+
+</body>
+</html>

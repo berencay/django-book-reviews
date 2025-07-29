@@ -3,6 +3,7 @@
 <head>
     {% load static %}
     <link rel="stylesheet" href="{% static 'books/style.css' %}">
+
     <meta charset="UTF-8">
     <title>{{ book.title }}</title>
 </head>
@@ -40,10 +41,10 @@
                 <tbody>
                     {% for review in reviews %}
                     <tr>
-                        <td>{{ review.reviewer_name }}</td>
+                        <td><a href="{% url 'review_detail' review.id %}">{{ review.reviewer_name }}</a></td>
                         <td>{{ review.review_date }}</td>
                         <td>{{ review.rating }}/10</td>
-                        <td>{{ review.comment }}</td>
+                        <td>{{ review.review_text | truncatechars:50 }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>

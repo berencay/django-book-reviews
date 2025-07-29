@@ -20,10 +20,12 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from reviews.views import review_detail
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('books.urls')),
+    path('reviews/<int:review_id>/', review_detail, name='review_detail'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
